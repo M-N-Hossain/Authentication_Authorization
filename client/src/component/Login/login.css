@@ -1,0 +1,39 @@
+.loginForm{
+    position: absolute;
+    height: 60%;
+    width: 50%;
+    left: 25%;
+    top: 20%;
+    background-color: aquamarine;
+}
+.divInsideForm{
+    position: relative;
+    top: 25%;
+}
+h2{
+    position: relative;
+    left: 45%;
+}
+input{
+    position: relative;
+    left: 30%;
+    height: 4%;
+    width: 35%;
+    padding: 0.5%;
+    margin: 1%;
+    
+}
+
+.login-btn{
+    position: relative;
+    left: 35%;
+    top: 20px;
+    width: 13%;
+    padding: 0.5%;
+    margin-right: 2%;
+    margin-top: 0%;
+    cursor: pointer;
+    background-color: aquamarine;
+    font-size: initial;
+    border-radius: 10px;
+}
