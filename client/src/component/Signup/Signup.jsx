@@ -1,32 +1,27 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./login.css";
+import "./signup.css";
 
-// For showing the notification
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-export default function Login() {
+export default function Signup() {
   const [values, setValues] = useState({
+    email: "",
     username: "",
     password: "",
   });
 
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-
-  function loginSubmitHandler(event) {
+  function registerSubmitHandler(event) {
     event.preventDefault();
 
     axios
-      .post("http://localhost:8080/login", values)
+      .post("http://localhost:8080/signup", values)
       .then((result) => {
         if (result.data.Status === "Success") {
-          navigate("/");
+          navigate("/login");
         } else {
-          toast(result.data.Error, {closeOnClick: true,});
+          alert("You have account with this email or username ");
         }
       })
       .then((err) => console.log(err));
@@ -34,9 +29,17 @@ export default function Login() {
 
   return (
     <div>
-      <form className="loginForm" onSubmit={loginSubmitHandler}>
+      <form className="signupForm" onSubmit={registerSubmitHandler}>
         <div className="divInsideForm">
-          <h2>Login--{">>"}</h2>
+          <h2>Sign Up</h2>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={(e) => setValues({ ...values, email: e.target.value })}
+            required
+          />
+          <br />
           <input
             type="text"
             name="username"
@@ -53,15 +56,12 @@ export default function Login() {
             required
           />
           <br />
-          <button className="login-btn" type="submit">
-            Log in
-          </button>
-          <Link to="/signup">
-            <button className="login-btn">Sign Up</button>
+          <button className="signup-btn">Signup</button>
+          <Link to="/login">
+            <button className="signup-btn">Log in </button>
           </Link>
         </div>
       </form>
-      <ToastContainer position="top-center" />
     </div>
   );
 }

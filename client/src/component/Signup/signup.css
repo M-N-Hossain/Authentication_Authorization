@@ -1,4 +1,4 @@
-.loginForm{
+.signupForm{
     position: absolute;
     height: 60%;
     width: 50%;
@@ -22,10 +22,11 @@ input{
     padding: 0.5%;
     margin: 1%;
     text-align: center;
+
     
 }
 
-.login-btn{
+.signup-btn{
     position: relative;
     left: 35%;
     top: 20px;
@@ -34,11 +35,11 @@ input{
     margin-right: 2%;
     margin-top: 0%;
     cursor: pointer;
-    background-color:  rgb(47, 160, 120);
+    background-color: rgb(47, 160, 120);
     font-size: initial;
     border-radius: 10px;
 }
-.login-btn:hover{
+.signup-btn:hover{
     background-color: white;
     color: rgb(27, 101, 77);
 }
