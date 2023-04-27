@@ -2,8 +2,24 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dbCnnection from "../database/mysqlConnection.js";
+import nodemailer from "nodemailer";
 
 const router = Router();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "hh0381915@gmail.com",
+    pass: "hossain1234",
+  },
+});
+
+const mailOptions = {
+  from: "hh0381915@gmail.com",
+  to: "",
+  subject: "account creation notification",
+  text: `You have a created a acount with SOME`,
+};
 
 // SignUp post method with bcrypt which encrypt the password and save a new user to the database
 
@@ -17,6 +33,11 @@ router.post("/signup", async (req, res) => {
     const values = [req.body.email, req.body.username, hashedPassword];
     dbCnnection.query(sql, [values], (err, data) => {
       if (err) return res.send({ Error: "Error in SQL execution" });
+      mailOptions.to = req.body.email;
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) return console.log(err);
+        return console.log("Message sent to " + mailOptions.to);
+      });
       return res.send({ Status: "Success" });
     });
   });
